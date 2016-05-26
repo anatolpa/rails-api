@@ -6,9 +6,8 @@ class Api::ImagesController < Api::BaseController
   end
 
   def show
-    user = User.find(params[:user_id])
-    image = user.images.find(params[:id])
-    render_response image
+    @image = current_user.images.find(params[:id])
+    render_response @image
   end
 
   def create
