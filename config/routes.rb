@@ -9,11 +9,13 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :update, :create, :destroy]
     # resources :users, only: [:create]
     resources :images,  only: [:index, :create, :show, :destroy]
-
+    resources :tasks, only: [:index, :show, :create, :destroy]
 
     resource :session, only: [:create]
     delete '/session', to: 'sessions#destroy'
   end
+
+   mount Sidekiq::Web => '/sidekiq'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

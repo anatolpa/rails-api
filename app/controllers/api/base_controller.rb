@@ -23,6 +23,14 @@ class Api::BaseController < ::ApplicationController
     render_json data, status
   end
 
+  def page
+    params[:page] || 1
+  end
+
+  def limit
+    params[:limit] || 20
+  end
+
   private
 
   def authorize_user

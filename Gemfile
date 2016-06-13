@@ -9,10 +9,14 @@ gem 'kaminari'
 gem 'dotenv-rails'
 gem 'active_model_serializers'
 gem 'bcrypt'
+gem 'sidekiq'
+gem 'sidekiq-limit_fetch'
+gem 'httparty'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  # debugging
+  gem 'pry'
+  gem 'pry-plus-byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
 

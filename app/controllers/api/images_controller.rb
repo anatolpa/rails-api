@@ -26,12 +26,4 @@ class Api::ImagesController < Api::BaseController
   def image_params
     params.permit(:attachment)
   end
-
-  def page
-    params[:page] || 1
-  end
-
-  def limit
-    params[:limit] || 20
-  end
 end

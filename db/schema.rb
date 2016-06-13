@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523161151) do
+ActiveRecord::Schema.define(version: 20160602165755) do
 
   create_table "images", force: :cascade do |t|
     t.string   "attachment", limit: 255
@@ -29,6 +29,20 @@ ActiveRecord::Schema.define(version: 20160523161151) do
 
   add_index "sessions", ["user_id"], name: "index_sessions_on_user_id", using: :btree
 
+  create_table "tasks", force: :cascade do |t|
+    t.string   "operation",  limit: 255
+    t.string   "status",     limit: 255
+    t.string   "params",     limit: 255
+    t.string   "result",     limit: 255
+    t.integer  "user_id",    limit: 4
+    t.integer  "image_id",   limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "tasks", ["image_id"], name: "index_tasks_on_image_id", using: :btree
+  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",           limit: 255, default: "", null: false
     t.datetime "created_at",                               null: false
@@ -39,4 +53,6 @@ ActiveRecord::Schema.define(version: 20160523161151) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "images", "users"
+  add_foreign_key "tasks", "images"
+  add_foreign_key "tasks", "users"
 end
