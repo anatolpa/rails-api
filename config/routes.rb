@@ -1,21 +1,22 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+
+  mount Sidekiq::Web => '/sidekiq'
 
   # You can have the root of your site routed with "root"
    root 'home#index'
 
    namespace :api do
     resources :users, only: [:index, :show, :update, :create, :destroy]
-    # resources :users, only: [:create]
     resources :images,  only: [:index, :create, :show, :destroy]
     resources :tasks, only: [:index, :show, :create, :destroy]
 
     resource :session, only: [:create]
     delete '/session', to: 'sessions#destroy'
   end
-
-   mount Sidekiq::Web => '/sidekiq'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

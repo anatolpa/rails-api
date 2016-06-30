@@ -21,8 +21,9 @@ class Api::TasksController < Api::BaseController
 
   def update
     task = Task.find(params[:id])
-    image = JSON.parse(params[:image])
-    task.update image
+    task.status =  params[:status]
+    task.result =  params[:result_image]
+    task.save!
     render_response task, 200
   end
 

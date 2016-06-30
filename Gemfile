@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
+gem 'sinatra', :require => false
 gem 'mysql2'
 gem 'carrierwave'
 gem 'kaminari'
@@ -12,6 +13,8 @@ gem 'bcrypt'
 gem 'sidekiq'
 gem 'sidekiq-limit_fetch'
 gem 'httparty'
+gem 'foreman'
+gem 'puma'
 
 group :development, :test do
   # debugging
